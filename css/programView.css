@@ -1,0 +1,41 @@
+#outputframe{
+    height: 100%;
+    width: 90%;
+    overflow-y: scroll;
+    margin: auto;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+#outputframe pre, #outputframe p{
+    width: 80%;
+    background-color: rgba(2, 2, 2, 0.9);
+    color: white;
+    font-family: consolas;
+    padding: 2vh 4vh;
+    font-size: 1.3em;
+    overflow-x: scroll;
+    border-radius: 10px;
+    margin: auto;
+    text-align: justify;
+    margin-bottom: 3vh;
+}
+#outputframe h1,#outputframe h2{
+    margin: 4vh 0;
+    text-align: center;
+}
+#outputframe table{
+    width: 100%;
+    font-size: 24px;
+    font-family: consolas;
+    margin: 30px 0px;
+    padding: 10px;
+    border: 1px dashed white;
+    /* background-color: rgb(22, 18, 18); */
+    border-radius: 5px;
+}
+#outputframe table th, #outputframe table td{
+    padding: 15px;
+    border: 2px solid white;
+    color: white;
+}
