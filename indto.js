@@ -32,7 +32,7 @@ let left = [
     {
         "id": "Update",
         "heading": "Update",
-        "Topics": ["Updating value of a cell"]
+        "Topics": ["Updating value"]
     },
     {
         "id": "Select",
@@ -42,12 +42,12 @@ let left = [
     {
         "id": "Clauses",
         "heading": "Clauses",
-        "Topics": ["Group by", "Having", "Order by", "Limit", "Offset"]
+        "Topics": ["Group by", "Order by", "Limit", "Offset"]
     },
     {
         "id": "Views",
         "heading": "Views",
-        "Topics": ["Creating View", "Deleting View"]
+        "Topics": ["Introduction" ,"Creating View", "Deleting View"]
     },
     {
         "id": "Privileges",
@@ -633,14 +633,955 @@ let right = [
         `,
         "tableRequired": false
     },
+    {
+        "code":` <h2>Inserting value into Table</h2>
+        <p>To insert data into a MySQL table, you use the INSERT INTO statement. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <div class="dark">
+            <h2>Inserting all values of a row</h2>
+            <p>
+                <code>INSERT INTO table_name VALUES (value1, value2, ...);</code>
+            </p>
+            <h2>Inserting particular values of a row</h2>
+            <p>
+                <code>INSERT INTO table_name(column1, column3, ...) VALUES (value1, value3, ... );</code>
+            </p>
+            <h2>Inserting Multiple rows</h2>
+            <p>
+                <code>INSERT INTO table_name VALUES (value1, value2, ...), (value1, value2, ...), (value1, value2, ...);</code>
+            </p>
+        </div>
+        <pre>
+            <table>
+                <caption>Example Table : student</caption>
+                <tr>
+                    <th>RollNo</th>
+                    <th>Name</th>
+                    <th>PhoneNo</th>
+                </tr>
+            </table>
+        </pre>
+        <h2>Query</h2>
+        <p>INSERT INTO student VALUES ('4201', "Abhishek", "9688258565");
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+        </table>
+    </p>
+        <p>INSERT INTO student(RollNo, Name) VALUES ('4202', "Anjali");
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>NULL</td>
+            </tr>
+        </table>
+        <p>INSERT INTO student VALUES ('4203', "Aman", "7639927794"), ('4204', "Asha", "6259927794");
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+            </tr>
+        </table>
+    </p>`,
+    "tableRequired" : false
+    },
+    {
+        "code":` <h2>Deleting Row(s) from Table</h2>
+        <p>To delete data from a MySQL table, you use the DELETE FROM statement. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <div class="dark">
+            <h2>Deleting all rows</h2>
+            <p>
+                <code>DELETE FROM table_name;</code>
+            </p>
+            <h2>Deleting a particular row</h2>
+            <p>
+                <code>DELETE FROM table_name WHERE condition;</code>
+            </p>
+        </div>
+        <p>
+        <table>
+            <caption>Example Table : student</caption>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+            </tr>
+            </table>
+        </p>
+        <h2>Query</h2>
+        <p>DELETE FROM student WHERE rollNo = "4202";
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+            </tr>
+        </table>
+    </p>
+        <p>DELETE FROM student;
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+        </table>
+    </p>`,
+    "tableRequired" : false
+    },
+    {
+        "code":` <h2>Updating values</h2>
+        <p>To update data in a MySQL table, you use the UPDATE statement. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <div class="dark">
+            <h2>Updating a value of column(s)</h2>
+            <p>
+                <code>UPDATE table_name SET column1 = value1, column2 = value2, ...;</code>
+            </p>
+            <h2>Updating a value of particular columns</h2>
+            <p>
+                <code>UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;</code>
+            </p>
+        </div>
+        <p>
+        <table>
+            <caption>Example Table : student</caption>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>NULL</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+                <td>NULL</td>
+            </tr>
+            </table>
+        </p>
+        <h2>Query</h2>
+        <p>UPDATE student SET class = 'BCA-I';
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+                <td>BCA-I</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>NULL</td>
+                <td>BCA-I</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+                <td>BCA-I</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+                <td>BCA-I</td>
+            </tr>
+        </table>
+    </p>
+        <p>UPDATE table_name SET PhoneNo = '7812569871' WHERE RollNo = '4202';
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+                <td>BCA-I</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>7812569871</td>
+                <td>BCA-I</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+                <td>BCA-I</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+                <td>BCA-I</td>
+            </tr>
+        </table>
+    </p>`,
+    "tableRequired" : false
+    },
+    {
+        "code":` <h2>Selecting values</h2>
+        <p>To select data from a MySQL table, you use the SELECT statement. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <div class="dark">
+            <h2>Selecting values of particular column(s)</h2>
+            <p>
+                <code>SELECT column1, column2, ... FROM table_name;</code>
+            </p>
+            <h2>Selecting values of every column</h2>
+            <p>
+                <code>SELECT * FROM table_name;</code>
+            </p>
+        </div>
+        <p>
+        <table class="extable">
+        <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT Name, PhoneNo FROM student;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>7812569871</td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>7639927794</td>
+            </tr>
+            <tr>
+                <td>Asha</td>
+                <td>6259927794</td>
+            </tr>
+        </table>
+    </p>
+        <p>SELECT * FROM student;
+        <table class="extable">
+        
+        </table>
+    </p>`,
+    "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Conditional Retrievel of rows</h2>
+        <p>To retrieve rows from a MySQL table based on specific conditions, you can use the SELECT statement along with the WHERE clause. The WHERE clause allows you to specify conditions that filter the rows returned by the query. Here's how you can use it:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>SELECT column1, column2, ... FROM table_name WHERE condition;</code>
+        </p>
+        <p>
+            <table>
+                <caption>Comparison Operators</caption>
+                <tr>
+                    <th>Operator</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>=</td>
+                    <td>Equal to</td>
+                </tr>
+                <tr>
+                    <td>!= or <></td>
+                    <td>Not equal to</td>
+                </tr>
+                <tr>
+                    <td><</td>
+                    <td>Less than</td>
+                </tr>
+                <tr>
+                    <td>></td>
+                    <td>Greater than</td>
+                </tr>
+                <tr>
+                    <td><=</td>
+                    <td>Less than or equal to</td>
+                </tr>
+                <tr>
+                    <td>>=</td>
+                    <td>Greater than or equal to</td>
+                </tr>
+            </table>
+            <table>
+                <caption>Logical Operators</caption>
+                <tr>
+                    <th>Operator</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>AND</td>
+                    <td>Logical AND</td>
+                </tr>
+                <tr>
+                    <td>OR</td>
+                    <td>Logical OR</td>
+                </tr>
+                <tr>
+                    <td>NOT</td>
+                    <td>Logical NOT</td>
+                </tr>
+            </table>
+            <table>
+                <caption>Special Operators</caption>
+                <tr>
+                    <th>Operator</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>IN</td>
+                    <td>Used to specify multiple values in a WHERE clause.</td>
+                </tr>
+                <tr>
+                    <td>BETWEEN</td>
+                    <td>Used to specify a range of values in a WHERE clause.</td>
+                </tr>
+                <tr>
+                    <td>IS NULL</td>
+                    <td>Used to check for NULL values in a column.</td>
+                </tr>
+            </table>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT Name, Marks FROM student WHERE RollNo = "4202";
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>246<td>
+            </tr>
+        </table></p>
+        <p>SELECT Name, Marks FROM student WHERE RollNo != "4202";
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>296<td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>286<td>
+            </tr>
+            <tr>
+                <td>Asha</td>
+                <td>156<td>
+            </tr>
+        </table></p>
+        <p>SELECT Name, Marks FROM student WHERE Marks<246;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Asha</td>
+                <td>156<td>
+            </tr>
+        </table></p>
+            <p>SELECT Name, Marks FROM student WHERE Marks>286;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>296<td>
+            </tr>
+        </table></p>
+        <p>SELECT Name, Marks FROM student WHERE Marks<=246;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Asha</td>
+                <td>156<td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>246<td>
+            </tr>
+        </table>
+        </p>
+        <p>SELECT Name, Marks FROM student WHERE Marks>=286;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>296<td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>286<td>
+            </tr>
+        </table></p>
+        <p>SELECT Name, Marks FROM student WHERE name = "Abhishek" and Marks>=286;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>296<td>
+            </tr>
+        </table>
+        </p>
+        <p>SELECT Name, Marks FROM student WHERE name = "Abhishek" or Marks=286;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>296<td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>286<td>
+            </tr>
+        </table>
+        </p>
+        <p>SELECT Name, Marks FROM student WHERE RollNo in("4201", "4203");
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>296<td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>286<td>
+            </tr>
+        </table>
+        </p>
+        <p>SELECT Name, Marks FROM student WHERE marks between 100 and 200;
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Asha</td>
+                <td>156<td>
+            </tr>
+        </table>
+        </p>
+    `,
+    "tableRequired" : true,
+    },
+    {
+        "code":` <h2>String Pattern Matching in MySQL</h2>
+        <p>In MySQL, you can use the LIKE operator along with wildcard characters to match patterns in strings. Here's how you can use it:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>SELECT * FROM table_name WHERE column_name LIKE 'pattern';</code>
+        </p>
+        <p>
+            <table>
+                <tr>
+                    <th>character</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>% (Percent)</td>
+                    <td>Represents zero or more characters</td>
+                </tr
+                <tr>
+                    <td>_ (Underscore)</td>
+                    <td>Represents a single character</td>
+                </tr>
+            </table>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT Name, PhoneNo FROM student WHERE PhoneNo LIKE "7%";
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>7812569871</td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>7639927794</td>
+            </tr>
+        </table></p>
+        <p>SELECT Name, PhoneNo FROM student WHERE PhoneNo LIKE "A_h%";
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>PhoneNo</th>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+            </tr>
+            <tr>
+                <td>Asha</td>
+                <td>6259927794</td>
+            </tr>
+        </table></p>
+        `,
+    "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Grouping the retrieved values</h2>
+        <p>In MySQL, the GROUP BY clause is used in conjunction with aggregate functions to group rows that have the same values into summary rows. It's commonly used to perform aggregate functions like COUNT, SUM, AVG, MAX, or MIN on groups of data. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>SELECT column1, aggregate_function(column2) FROM table_name GROUP BY column1;</code>
+        </p>
+        <p>Additionally, you can use the HAVING clause to filter groups based on aggregate conditions. The HAVING clause is similar to the WHERE clause but is applied after the GROUP BY operation.</p>
+        <p>
+            <code>SELECT column1, aggregate_function(column2) FROM table_name GROUP BY column1 HAVING condition;</code>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT City, count(*) as No_of_students FROM student GROUP BY City;
+        <table>
+            <tr>
+                <th>City</th>
+                <th>No_of_students</th>
+            </tr>
+            <tr>
+                <td>Chandigarh</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Punjab</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Haryana</td>
+                <td>1</td>
+            </tr>
+        </table>
+        <p>SELECT City, count(*) as No_of_students FROM student GROUP BY City Having count(city) < 2;
+        <table>
+            <tr>
+                <th>City</th>
+                <th>No_of_students</th>
+            </tr>
+            <tr>
+                <td>Chandigarh</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>Haryana</td>
+                <td>1</td>
+            </tr>
+        </table>
+       </p>
+        `,
+    "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Ordering the results</h2>
+        <p>In MySQL, the ORDER BY clause is used to sort the result set of a query based on one or more columns. It allows you to specify the order in which the rows should be returned. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>SELECT column1, column2, ... FROM table_name ORDER BY column1 [ASC | DESC], column2 [ASC | DESC], ...;</code>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT Distinct City FROM student ORDER BY City ASC;
+        <table>
+            <tr>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>Chandigarh</td>
+            </tr>
+            <tr>
+                <td>Haryana</td>
+            </tr>
+            <tr>
+                <td>Punjab</td>
+            </tr>
+        </table>
+        <p>SELECT Distinct City FROM student ORDER BY City DESC;
+        <table>
+            <tr>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>Punjab</td>
+            </tr>
+            <tr>
+                <td>Haryana</td>
+            </tr>
+            <tr>
+                <td>Chandigarh</td>
+            </tr>
+        </table>
+       </p>
+        `,
+    "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Limiting the results to particular number of rows</h2>
+        <p>In MySQL, the LIMIT clause is used to restrict the number of rows returned by a query. It is commonly used to retrieve a subset of rows from a result set, especially when dealing with large datasets. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>SELECT column1, column2, ... FROM table_name LIMIT number_of_rows;</code>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT * FROM student LIMIT 2;
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+                <th>Marks</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+                <td>BCA-I</td>
+                <td>296</td>
+                <td>Chandigarh</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>7812569871</td>
+                <td>BCA-I</td>
+                <td>246</td>
+                <td>Punjab</td>
+            </tr>
+        </table>
+        </p>
+        `,
+    "tableRequired" : true,
+    },
+    {
+        "code":` <h2>OFFSET - Clause</h2>
+        <p>In MySQL, the OFFSET clause is used in conjunction with the LIMIT clause to specify the number of rows to skip before starting to return rows from the result set. It's commonly used for pagination, where you want to retrieve a subset of rows starting from a specific position in the result set. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>SELECT column1, column2, ... FROM table_name LIMIT number_of_rows OFFSET offset_value;</code>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>SELECT * FROM student LIMIT 1 OFFSET 1;
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+                <th>Marks</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>7812569871</td>
+                <td>BCA-I</td>
+                <td>246</td>
+                <td>Punjab</td>
+            </tr>
+        </table>
+        </p>
+        `,
+        "tableRequired" : true,
+    },
+    {
+        "code": `<h2>What is Views?</h2>
+        <p>In databases, a view is a virtual table that is based on the result set of a SELECT query. Unlike physical tables, views do not store data themselves; they are essentially saved queries that dynamically generate the result set when queried. Views can simplify complex queries, abstract the underlying data model, and provide a security mechanism by restricting access to certain columns or rows of a table.</p>
+        <h2>Key Points of Views:</h2>
+        <p><b><u>Structure:</u></b> Views have a structure similar to tables, with columns and rows, but they do not store any data directly.</p>
+        <p><b><u>Virtual:</u></b> Views are virtual tables, meaning they are not physical entities and do not occupy storage space.</p>
+        <p><b><u>Schema Binding:</u></b> Views can be schema-bound, meaning they are bound to the schema of the underlying tables. This ensures that the underlying schema cannot be modified in a way that would break the view.</p>
+        <p><b><u>Security:</u></b> Views can be used to control access to data by providing a restricted view of the underlying tables. Users can be granted access to views without granting direct access to the underlying tables.</p>
+        <p><b><u>Complex Queries:</u></b> Views can simplify complex queries by encapsulating logic and calculations into a single object that can be queried like a table.</p>
+        <p><b><u>Performance:</u></b> Views can improve query performance by pre-computing and caching results, especially for frequently used or complex queries.</p>
+        <p><b><u>Modifiability:</u></b> Some views are updatable, meaning they can be used to insert, update, or delete rows from the underlying tables, provided certain conditions are met.</p>
+        `,
+        "tableRequired": false
+    },
+    {
+        "code":` <h2>Creating Views</h2>
+        <p>Here's how you can create a view in MySQL:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>CREATE VIEW view_name AS SELECT column1, column2, ... FROM table_name WHERE condition;</code>
+        </p>
+        <p>
+        <table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>CREATE VIEW failStudents AS SELECT * FROM student WHERE marks < 180;<br>
+        Query OK, 0 rows affected (0.03 sec)<br><br>
+        SELECT * FROM failStudents;
+        <table>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+                <th>Marks</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+                <td>BCA-I</td>
+                <td>156</td>
+                <td>Haryana</td>
+            </tr>
+        </table>
+        </p>
+        `,
+        "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Deleting Views</h2>
+        <p>Here's how you can delete a view in MySQL:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>DROP VIEW view_name;</code>
+        </p>
+        <p>
+        <table>
+            <caption>Example View : failStudents</captionn>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+                <th>Marks</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+                <td>BCA-I</td>
+                <td>156</td>
+                <td>Haryana</td>
+            </tr>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>DROP VIEW failStudents;<br><br>
+        Query OK, 0 rows affected (0.01 sec)
+        </p>
+        `,
+        "tableRequired" : false,
+    },
 ]
 
 var frame = document.getElementById("outputframe")
 function myfunc(a) {
+    frame.innerHTML = right[a.id].code;
     if (right[a.id].tableRequired) {
-        alert("hello")
-    } else {
-        frame.innerHTML = right[a.id].code;
+        document.querySelectorAll(".extable").forEach(element => {
+            element.innerHTML += `
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>PhoneNo</th>
+                <th>Class</th>
+                <th>Marks</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>4201</td>
+                <td>Abhishek</td>
+                <td>9688258565</td>
+                <td>BCA-I</td>
+                <td>296</td>
+                <td>Chandigarh</td>
+            </tr>
+            <tr>
+                <td>4202</td>
+                <td>Anjali</td>
+                <td>7812569871</td>
+                <td>BCA-I</td>
+                <td>246</td>
+                <td>Punjab</td>
+            </tr>
+            <tr>
+                <td>4203</td>
+                <td>Aman</td>
+                <td>7639927794</td>
+                <td>BCA-I</td>
+                <td>286</td>
+                <td>Punjab</td>
+            </tr>
+            <tr>
+                <td>4204</td>
+                <td>Asha</td>
+                <td>6259927794</td>
+                <td>BCA-I</td>
+                <td>156</td>
+                <td>Haryana</td>
+            </tr>`
+        });
     }
 }
 
