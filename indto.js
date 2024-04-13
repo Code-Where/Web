@@ -57,7 +57,7 @@ let left = [
     {
         "id": "Transactions",
         "heading": "Transaction Management",
-        "Topics": ["Commit", "Rollback"]
+        "Topics": ["Introduction", "Example"]
     },
     {
         "id": "Joins",
@@ -1533,14 +1533,69 @@ let right = [
         `,
         "tableRequired" : false,
     },
-]
+    {
+        "code":` <h2>Granting Permissions to users</h2>
+        <p>In MySQL, the GRANT statement is used to grant specific privileges to database users or roles. These privileges can include various permissions such as SELECT, INSERT, UPDATE, DELETE, and more. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>GRANT privileges ON database_name.table_name TO 'user'@'host';</code>
+        </p>
+        <p>Replace privileges with the specific privileges you want to grant, database_name.table_name with the name of the database and table (or * for all tables) you want to grant access to, and 'user'@'host' with the username and host for the user you want to grant access to.</p>
+        <h2>Examples</h2>
+        <p>1. Example to grant SELECT privileges on all tables in the school database to a user named 'john' from localhost:<br><br>GRANT SELECT ON school.* TO 'john'@'localhost';</p>
+        <p>2. Example to grant multiple privileges at once:<br><br>GRANT SELECT, INSERT, UPDATE ON employees.* TO 'john'@'localhost';</p>
+        <p>3. Example to grant all privileges on all tables in the school database to a user named 'john' from localhost:<br><br>GRANT ALL PRIVILEGES ON school.* TO 'john'@'localhost';</p>
+        <p>4. Example to grant all privileges on all databases to a user named 'john' from localhost:<br><br>GRANT ALL PRIVILEGES ON *.* TO 'john'@'localhost';</p>`,
+        "tableRequired" : false,
+    },
+    {
+        "code":` <h2>Revoking Permissions from users</h2>
+        <p>
+        In MySQL, the REVOKE statement is used to revoke previously granted privileges from users or roles. It effectively removes specific privileges from a user, limiting their access to certain databases, tables, or columns. Here's the basic syntax:</p>
+        <h2>Syntax</h2>
+        <p>
+            <code>REVOKE privileges ON database_name.table_name FROM 'user'@'host';</code>
+        </p>
+        <p>Replace privileges with the specific privileges you want to revoke, database_name.table_name with the name of the database and table (or * for all tables) you want to revoke access from, and 'user'@'host' with the username and host for the user you want to revoke access from.</p>
+        <h2>Examples</h2>
+        <p>1. Example to revoke SELECT privileges on all tables in the school database to a user named 'john' from localhost:<br><br>REVOKE SELECT ON school.* TO 'john'@'localhost';</p>
+        <p>2. Example to revoke multiple privileges at once:<br><br>REVOKE SELECT, INSERT, UPDATE ON school.* TO 'john'@'localhost';</p>
+        <p>3. Example to revoke all privileges on all tables in the school database to a user named 'john' from localhost:<br><br>REVOKE ALL PRIVILEGES ON school.* TO 'john'@'localhost';</p>
+        <p>4. Example to revoke all privileges on all databases to a user named 'john' from localhost:<br><br>REVOKE ALL PRIVILEGES ON *.* TO 'john'@'localhost';</p>`,
+        "tableRequired" : false,
+    },
+    {
+        "code": `<h2>Transaction Management</h2>
+        <p>Transaction management in MySQL allows you to group multiple SQL statements into a single unit of work, ensuring that either all the statements are executed successfully or none of them are applied. This helps maintain data integrity and consistency within the database. MySQL supports transaction management using the START TRANSACTION, COMMIT, and ROLLBACK statements.</p>
+        <h2>Starting New Transaction:</h2>
+        <p><code>START TRANSACTION;</code></p>
+        <p>This statement marks the beginning of a transaction. It signifies the start of a sequence of SQL statements that will be treated as a single unit of work.</p>
+        <h2>Commiting Changes in Transaction:</h2>
+        <p><code>COMMIT;</code></p>
+        <p>This statement permanently saves the changes made during the current transaction. Once committed, the changes become visible to other database sessions.</p>
+        <h2>Roll back changes in Transaction:</h2>
+        <p><code>ROLLBACK;</code></p>
+        <p>This statement rolls back (undoes) any changes made during the current transaction. It effectively cancels the transaction and restores the database to its state before the transaction began.</p>
+        
+        `,
+        "tableRequired": false
+    },
+    {
+        "code":` <h2>Example of using Commit/Rollback</h2>
+        <p>Here's an example of how you might use these statements together:</p>
+        <p><table class="extable">
+            <caption>Example Table : student</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>
+            START TRANSACTION;<br><br>
 
-var frame = document.getElementById("outputframe")
-function myfunc(a) {
-    frame.innerHTML = right[a.id].code;
-    if (right[a.id].tableRequired) {
-        document.querySelectorAll(".extable").forEach(element => {
-            element.innerHTML += `
+            UPDATE student SET marks = marks + 10 where marks < 290;<br><br>
+            COMMIT;<br><br>
+            ROLLBACK;<br><br>
+            SELECT * FROM student;
+            <table>
             <tr>
                 <th>RollNo</th>
                 <th>Name</th>
@@ -1562,7 +1617,7 @@ function myfunc(a) {
                 <td>Anjali</td>
                 <td>7812569871</td>
                 <td>BCA-I</td>
-                <td>246</td>
+                <td>256</td>
                 <td>Punjab</td>
             </tr>
             <tr>
@@ -1570,7 +1625,7 @@ function myfunc(a) {
                 <td>Aman</td>
                 <td>7639927794</td>
                 <td>BCA-I</td>
-                <td>286</td>
+                <td>296</td>
                 <td>Punjab</td>
             </tr>
             <tr>
@@ -1578,12 +1633,396 @@ function myfunc(a) {
                 <td>Asha</td>
                 <td>6259927794</td>
                 <td>BCA-I</td>
-                <td>156</td>
+                <td>166</td>
                 <td>Haryana</td>
-            </tr>`
+            </tr>
+            </table>
+        </p>
+        <p>
+            START TRANSACTION;<br><br>
+
+            UPDATE student SET marks = marks + 10 where marks < 290;<br><br>
+            ROLLBACK;<br><br>
+            COMMIT;<br><br>
+            SELECT * FROM student;
+            <table Class="extable">
+            </table>
+        </p>
+        `,
+        "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Equi Join</h2>
+        <p>Equi joins in SQL are a specific type of join where the condition for joining tables is based on the equality of values in specified columns. There are two main types of equi joins:</p>
+        <p><b><u>Inner Equi Join : </u></b>An inner equi join returns only the rows that have matching values in both tables based on the specified join condition.</p>
+        <h2>Syntax</h2>
+        <p><code>SELECT columns FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;</code></p>
+        <p><b><u>Outer Equi Join : </u></b>An outer equi join returns all the rows from both tables, along with the matched rows based on the join condition.There are two types of outer equi joins: LEFT OUTER JOIN and RIGHT OUTER JOIN.</p>
+        <h2>Syntax</h2>
+        <p><code>SELECT columns FROM table1 LEFT OUTER JOIN table2 ON table1.column_name = table2.column_name;</code><br><br>
+        OR<br><br>
+        SELECT columns FROM table1 RIGHT OUTER JOIN table2 ON table1.column_name = table2.column_name;</code></p>
+        <p><table class="custTable">
+            <caption>Example Table : Customers</caption>
+        </table>
+        <table class="orderTable">
+            <caption>Example Table : Orders</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON Orders.customerID=Customers.customerID;
+        <table>
+            <tr>
+                <th>OrderID</th>
+                <th>CustomerName</th>
+                <th>OrderDate</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>Anjali</td>
+                <td>1996-09-18</td>
+            </tr>
+        </table>
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders LEFT OUTER JOIN Customers ON Orders.customerID=Customers.customerID;
+        <table>    
+            <tr>
+                <th>OrderID</th>
+                <th>CustomerName</th>
+                <th>OrderDate</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>Anjali</td>
+                <td>1996-09-18</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>NULL</td>
+                <td>1996-09-19</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>NULL</td>
+                <td>1996-09-20</td>
+            </tr>
+        </table>
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders RIGHT OUTER JOIN Customers ON Orders.customerID=Customers.customerID;
+        <table>    
+            <tr>
+                <th>OrderID</th>
+                <th>CustomerName</th>
+                <th>OrderDate</th>
+            </tr>
+            <tr>
+                <td>NULL</td>
+                <td>Abhishek</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>Anjali</td>
+                <td>1996-09-18</td>
+            </tr>
+            <tr>
+                <td>NULL</td>
+                <td>Aman</td>
+                <td>NULL</td>
+            </tr>
+        </table>
+        </p>
+
+        `,
+        "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Cartesian Join</h2>
+        <p>A Cartesian join, also known as a Cartesian product or cross join, is a join operation that returns the Cartesian product of the sets of rows from the joined tables. It means that it produces a result set in which each row from the first table is combined with every row from the second table. This type of join is less common and can result in a large result set, especially when joining tables with a large number of rows. There is essentially only one type of Cartesian join, but it can be performed using different syntax variations:</p>
+        <h2>Syntax</h2>
+        <p><code>SELECT columns FROM table1 CROSS JOIN table2;</code><br><br>
+        
+        <p><table class="custTable">
+            <caption>Example Table : Customers</caption>
+        </table>
+        <table class="orderTable">
+            <caption>Example Table : Orders</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>
+        SELECT Customers.CustomerName, Orders.OrderID FROM Customers CROSS JOIN Orders;
+        <table>
+            <tr>
+                <th>CustomerName</th>
+                <th>OrderID</th>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>10308</td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>10308</td>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>10308</td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>10309</td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>10309</td>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>10309</td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>10310</td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>10310</td>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>10310</td>
+            </tr>
+        </table>
+        </p>
+
+        `,
+        "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Outer Joins</h2>
+        <p>Outer joins in SQL are used to retrieve data from multiple tables while also including unmatched rows from one or both tables in the result set. There are two main types of outer joins:</p>
+        <p><b><u>LEFT OUTER JOIN (or LEFT JOIN) : </u></b>A left outer join returns all rows from the left table (the first table mentioned in the query), and the matched rows from the right table. If there are no matching rows in the right table, NULL values are returned for the columns from the right table.</p>
+        <h2>Syntax</h2>
+        <p><code>SELECT columns FROM table1 LEFT OUTER JOIN table2 ON table1.column_name = table2.column_name;</code></p>
+        <p><b><u>RIGHT OUTER JOIN (or RIGHT JOIN) : </u></b>A right outer join returns all rows from the right table (the second table mentioned in the query), and the matched rows from the left table. If there are no matching rows in the left table, NULL values are returned for the columns from the left table.</p>
+        <h2>Syntax</h2>
+        <p><code>SELECT columns FROM table1 RIGHT OUTER JOIN table2 ON table1.column_name = table2.column_name;</code></p>
+        <p><table class="custTable">
+            <caption>Example Table : Customers</caption>
+        </table>
+        <table class="orderTable">
+            <caption>Example Table : Orders</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders LEFT OUTER JOIN Customers ON Orders.customerID=Customers.customerID;
+        <table>    
+            <tr>
+                <th>OrderID</th>
+                <th>CustomerName</th>
+                <th>OrderDate</th>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>Anjali</td>
+                <td>1996-09-18</td>
+            </tr>
+            <tr>
+                <td>10309</td>
+                <td>NULL</td>
+                <td>1996-09-19</td>
+            </tr>
+            <tr>
+                <td>10310</td>
+                <td>NULL</td>
+                <td>1996-09-20</td>
+            </tr>
+        </table>
+        SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders RIGHT OUTER JOIN Customers ON Orders.customerID=Customers.customerID;
+        <table>    
+            <tr>
+                <th>OrderID</th>
+                <th>CustomerName</th>
+                <th>OrderDate</th>
+            </tr>
+            <tr>
+                <td>NULL</td>
+                <td>Abhishek</td>
+                <td>NULL</td>
+            </tr>
+            <tr>
+                <td>10308</td>
+                <td>Anjali</td>
+                <td>1996-09-18</td>
+            </tr>
+            <tr>
+                <td>NULL</td>
+                <td>Aman</td>
+                <td>NULL</td>
+            </tr>
+        </table>
+        </p>
+
+        `,
+        "tableRequired" : true,
+    },
+    {
+        "code":` <h2>Self Join</h2>
+        <p>A self-join is a type of join in SQL where a table is joined with itself. This is useful when you want to compare rows within the same table based on some condition. There are different types of self-joins, depending on the criteria used for comparison:</p>
+        <h2>Syntax</h2>
+        <p><code>SELECT columns FROM columns FROM table_name t1 JOIN table_name t2 ON t1.common_column = t2.common_column;;</code><br><br>
+        
+        <p><table class="custTable">
+            <caption>Example Table : Customers</caption>
+        </table>
+        </p>
+        <h2>Query</h2>
+        <p>
+        SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2 FROM Customers A, Customers B WHERE A.CustomerID <> B.CustomerID;
+        <table>
+            <tr>
+                <th>CustomerName1</th>
+                <th>CustomerName2</th>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>Abhishek</td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>Abhishek</td>
+            </tr>
+            <tr>
+                <td>Aman</td>
+                <td>Anjali</td>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>Anjali</td>
+            </tr>
+            <tr>
+                <td>Anjali</td>
+                <td>Aman</td>
+            </tr>
+            <tr>
+                <td>Abhishek</td>
+                <td>Aman</td>
+            </tr>
+        </table>
+        </p>
+
+        `,
+        "tableRequired" : true,
+    },
+]
+
+var frame = document.getElementById("outputframe")
+function myfunc(a) {
+    frame.innerHTML = right[a.id].code;
+    if (right[a.id].tableRequired) {
+        document.querySelectorAll(".extable").forEach(element => {
+            element.innerHTML += StudentData();
+        });
+        document.querySelectorAll(".custTable").forEach(element => {
+            element.innerHTML += CustomerData();
+        });
+        document.querySelectorAll(".orderTable").forEach(element => {
+            element.innerHTML += OrderData();
         });
     }
 }
 
-
-
+function StudentData(){
+    return `
+    <tr>
+        <th>RollNo</th>
+        <th>Name</th>
+        <th>PhoneNo</th>
+        <th>Class</th>
+        <th>Marks</th>
+        <th>City</th>
+    </tr>
+    <tr>
+        <td>4201</td>
+        <td>Abhishek</td>
+        <td>9688258565</td>
+        <td>BCA-I</td>
+        <td>296</td>
+        <td>Chandigarh</td>
+    </tr>
+    <tr>
+        <td>4202</td>
+        <td>Anjali</td>
+        <td>7812569871</td>
+        <td>BCA-I</td>
+        <td>246</td>
+        <td>Punjab</td>
+    </tr>
+    <tr>
+        <td>4203</td>
+        <td>Aman</td>
+        <td>7639927794</td>
+        <td>BCA-I</td>
+        <td>286</td>
+        <td>Punjab</td>
+    </tr>
+    <tr>
+        <td>4204</td>
+        <td>Asha</td>
+        <td>6259927794</td>
+        <td>BCA-I</td>
+        <td>156</td>
+        <td>Haryana</td>
+    </tr>`
+}
+function CustomerData(){
+    return `
+    <tr>
+        <th>customerID</th>
+        <th>CustomerName</th>
+        <th>ContactNo</th>
+        <th>Country</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Abhishek</td>
+        <td>6283659862</td>
+        <td>Germany</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Anjali</td>
+        <td>7812569871</td>
+        <td>Mexico</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Aman</td>
+        <td>7639927794</td>
+        <td>Mexico</td>
+    </tr>`
+}
+function OrderData(){
+    return `
+    <tr>
+        <th>OrderID</th>
+        <th>customerId</th>
+        <th>OrderDate</th>
+    </tr>
+    <tr>
+        <td>10308</td>
+        <td>2</td>
+        <td>1996-09-18</td>
+    </tr>
+    <tr>
+        <td>10309</td>
+        <td>37</td>
+        <td>1996-09-19</td>
+    </tr>
+    <tr>
+        <td>10310</td>
+        <td>77</td>
+        <td>1996-09-20</td>
+    </tr>`
+}

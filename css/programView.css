@@ -17,7 +17,7 @@
     overflow-x: scroll;
     border-radius: 10px;
     margin: auto;
-    text-align: justify;
+    text-align: left;
     margin-bottom: 3vh;
 }
 #outputframe h1,#outputframe h2{
